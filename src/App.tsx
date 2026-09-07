@@ -2,8 +2,8 @@
 export default function App() {
   return (
     <div className="container py-5 text-center">
-      <h1>lecture13-starter</h1>
-      <p className="text-muted">Welcome to the lecture13-starter app!</p>
+      <h1>lab13</h1>
+      <p className="text-muted">Welcome to the lab13 app!</p>
     </div>
   );
 }

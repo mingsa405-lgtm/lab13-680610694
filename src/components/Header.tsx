@@ -2,7 +2,7 @@
 export default function Header() {
   return (
     <header className="text-white bg-secondary p-2 w-100">
-      <p className="m-4">lecture13</p>
+      <p className="m-4">lab13</p>
     </header>
   );
 }
