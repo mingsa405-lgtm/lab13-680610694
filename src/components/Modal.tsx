@@ -1,42 +1,19 @@
-// STEP 9 — Modal: ฟอร์มเพิ่ม task (ดู README: STEP 9)
-// เป็น "Controlled Component" — ค่าใน <input> ถูกกำหนดโดย state
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid"; // STEP 9: pnpm add uuid
+import { v4 as uuidv4 } from "uuid";
 import { type TaskCardProps } from "../libs/Todolist";
 
-type props = {
-  onAdd: (todo: TaskCardProps) => void;
-};
+type props = { onAdd: (todo: TaskCardProps) => void };
 
 export default function Modal({ onAdd }: props) {
-  // STEP 9 — 1 state ต่อ 1 ช่องกรอก
+  // 1 ช่องกรอก = 1 state
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = () => {
-    if (title.trim()) {
-      const newtodo: TaskCardProps = {
-        id: uuidv4(),
-        title,
-        description,
-        isDone: false,
-      };
-      onAdd(newtodo);
-      // STEP 9 — reset ฟอร์มด้วยการ set state กลับเป็นค่าว่าง
-      setTitle("");
-      setDescription("");
-    }
-  };
-
-  // STEP 9 — onChange: อ่านค่าล่าสุดจาก event.target.value (string เสมอ)
-  const titleOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
-  };
-
-  const descriptionOnchange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setDescription(event.target.value);
+    if (!title.trim()) return; // กันเพิ่มงานที่ไม่มีชื่อ
+    onAdd({ id: uuidv4(), title, description, isDone: false });
+    setTitle(""); // เคลียร์ฟอร์ม = set state กลับเป็นค่าว่าง
+    setDescription("");
   };
 
   return (
@@ -44,44 +21,28 @@ export default function Modal({ onAdd }: props) {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Add Todo List</h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <h5 className="modal-title">Add Todo</h5>
+            <button className="btn-close" data-bs-dismiss="modal" />
           </div>
           <div className="modal-body">
-            {/* STEP 9 — Input: value ผูกกับ state + onChange อัปเดต state */}
             <input
-              type="text"
               className="form-control mb-2"
-              placeholder="Title Todo"
+              placeholder="Title"
               value={title}
-              onChange={titleOnchange}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <textarea
               className="form-control"
               placeholder="description..."
               value={description}
-              onChange={descriptionOnchange}
-            ></textarea>
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </div>
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-              id="closeModal"
-            >
+            <button className="btn btn-secondary" data-bs-dismiss="modal">
               Cancel
             </button>
-            <button
-              type="button"
-              className="btn btn-success"
-              onClick={handleSubmit}
-            >
+            <button className="btn btn-success" onClick={handleSubmit}>
               Save
             </button>
           </div>

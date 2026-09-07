@@ -1,3 +1,4 @@
+import { Link } from "react-router"; //
 import { type SidebarProps } from "../libs/Sidebar";
 
 export default function Sidebar({ userName, type }: SidebarProps) {
@@ -12,24 +13,24 @@ export default function Sidebar({ userName, type }: SidebarProps) {
           <h3 className="navbar-brand">Todo List App</h3>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              {/* <Link> = เปลี่ยนหน้าโดยไม่ reload */}
+              <Link className="nav-link" to="/">
                 <span className="d-md-inline px-2">Home</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 role="button"
                 data-bs-toggle="dropdown"
-                aria-expanded="false"
               >
-                <span className="d-md-inline px-2">My Stuffs</span>
+                <span className="d-md-inline px-2">MY Stuffs</span>
               </a>
-              <ul className="dropdown-menu p-2">
+              <ul className="dropdown-menu">
                 <li>
-                  <a className="nav-link active" href="#">
+                  <Link className="dropdown-item" to="/my/todolistpage">
                     <span className="d-md-inline px-2">TodolistPage</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -38,7 +39,7 @@ export default function Sidebar({ userName, type }: SidebarProps) {
       </div>
       <div>
         <p className="text-white">
-          {userName} :{type}
+          {userName} : {type}
         </p>
       </div>
     </aside>
