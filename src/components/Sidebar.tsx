@@ -4,7 +4,7 @@ import { type SidebarProps } from "../libs/Sidebar";
 export default function Sidebar({ userName, type }: SidebarProps) {
   return (
     <aside
-      className="d-flex align-items-start flex-column p-4 bg-primary min-vh-100"
+      className="d-flex align-items-start flex-column p-4 bg-danger min-vh-100"
       style={{ width: "auto", height: "100%", overflowY: "auto" }}
       data-bs-theme="dark"
     >
